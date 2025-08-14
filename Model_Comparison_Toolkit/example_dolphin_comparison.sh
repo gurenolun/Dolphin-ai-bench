@@ -1,4 +1,90 @@
 #!/bin/bash
+# Anonymized Dolphin Comparison Example Script
+
+set -e
+
+echo "=== Model Comparison Toolkit Example ==="
+echo "This script demonstrates how to compare two model versions (Standard vs Deep)"
+echo "All paths are placeholders; please adjust to your data layout."
+echo ""
+
+# Verify entrypoint exists
+if [ ! -f "model_comparison_toolkit.py" ]; then
+  echo "Error: model_comparison_toolkit.py not found in current directory"
+  echo "Please run this script from the Model_Comparison_Toolkit directory"
+  exit 1
+fi
+
+# Placeholder paths (edit these for your environment)
+MODEL1_STANDARD="/path/to/model1_standard_results"  # e.g., data/models/Standard
+MODEL1_DEEP="/path/to/model1_deep_results"          # e.g., data/models/Deep
+MODEL2_STANDARD="/path/to/model2_standard_results"
+MODEL2_DEEP="/path/to/model2_deep_results"
+
+echo "Data paths:"
+echo "  Model1 Standard: $MODEL1_STANDARD"
+echo "  Model1 Deep:     $MODEL1_DEEP"
+echo "  Model2 Standard: $MODEL2_STANDARD"
+echo "  Model2 Deep:     $MODEL2_DEEP"
+echo ""
+
+echo "Option 1: Full comparison (Standard + Deep)"
+echo "python3 model_comparison_toolkit.py \
+  --model1-name \"Model-1\" \
+  --model2-name \"Model-2\" \
+  --model1-standard-dir \"$MODEL1_STANDARD\" \
+  --model2-standard-dir \"$MODEL2_STANDARD\" \
+  --model1-deep-dir \"$MODEL1_DEEP\" \
+  --model2-deep-dir \"$MODEL2_DEEP\" \
+  --include-deep \
+  --output-dir \"Model_1_vs_2_Full_Analysis\""
+
+echo ""
+echo "Option 2: Standard mode only"
+echo "python3 model_comparison_toolkit.py \
+  --model1-name \"Model-1\" \
+  --model2-name \"Model-2\" \
+  --model1-standard-dir \"$MODEL1_STANDARD\" \
+  --model2-standard-dir \"$MODEL2_STANDARD\" \
+  --output-dir \"Model_1_vs_2_Standard_Only\""
+
+read -p "Run which option? [1=Full, 2=Standard, 3=Show only, 4=Exit]: " choice
+
+case "$choice" in
+  1)
+    python3 model_comparison_toolkit.py \
+      --model1-name "Model-1" \
+      --model2-name "Model-2" \
+      --model1-standard-dir "$MODEL1_STANDARD" \
+      --model2-standard-dir "$MODEL2_STANDARD" \
+      --model1-deep-dir "$MODEL1_DEEP" \
+      --model2-deep-dir "$MODEL2_DEEP" \
+      --include-deep \
+      --output-dir "Model_1_vs_2_Full_Analysis"
+    ;;
+  2)
+    python3 model_comparison_toolkit.py \
+      --model1-name "Model-1" \
+      --model2-name "Model-2" \
+      --model1-standard-dir "$MODEL1_STANDARD" \
+      --model2-standard-dir "$MODEL2_STANDARD" \
+      --output-dir "Model_1_vs_2_Standard_Only"
+    ;;
+  3)
+    echo "Commands shown above."
+    ;;
+  4)
+    echo "Exit."
+    exit 0
+    ;;
+  *)
+    echo "Invalid choice."
+    exit 1
+    ;;
+esac
+
+echo "Done."
+#!/bin/bash
 # Dolphin 1.6 vs 1.9 Comparison Example Script
 
 echo "=== Dolphin Model Comparison Example ==="
