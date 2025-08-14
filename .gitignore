@@ -6,3 +6,12 @@ __pycache__/
 outputs/
 *.log
 .DS_Store
+\n# Data and outputs
+data/
+results/
+**/charts/
+**/reports/
+**/data/
+**/*.jsonl
+**/*.tsv
+**/*.csv

@@ -1,4 +1,4 @@
-# 医疗多模态模型评估流程 - 工作交接文档
+# 医疗多模态模型评估流程 
 
 ## 概述
 
@@ -42,20 +42,20 @@ conda activate multimodal_test
 
 #### 1.1 分类/分割任务回复提取
 
-**程序路径**: `/home/guohongcheng/extract_model_responses_final.py`
+**程序路径**: `scripts/extract_model_responses_final.py`
 
 **功能**: 从JSONL文件中提取和清理模型回复，特别适用于选择题类型的分类和分割任务。
 
 **使用方法**:
 ```bash
 # 处理单个文件
-python3 /home/guohongcheng/extract_model_responses_final.py \
+python3 scripts/extract_model_responses_final.py \
     --input /path/to/input.jsonl \
     --output /path/to/output.jsonl \
     --debug
 
 # 处理整个目录（推荐）
-python3 /home/guohongcheng/extract_model_responses_final.py \
+python3 scripts/extract_model_responses_final.py \
     --input /path/to/input_directory \
     --output /path/to/output_directory
 ```
@@ -69,20 +69,20 @@ python3 /home/guohongcheng/extract_model_responses_final.py \
 
 #### 1.2 测量任务数值提取
 
-**程序路径**: `/home/guohongcheng/extract_measurement_values_improved.py`
+**程序路径**: `scripts/extract_measurement_values_improved.py`
 
 **功能**: 从模型回复中提取数值，专用于测量任务。
 
 **使用方法**:
 ```bash
 # 处理单个文件
-python3 /home/guohongcheng/extract_measurement_values_improved.py \
+python3 scripts/extract_measurement_values_improved.py \
     --input /path/to/input.jsonl \
     --output /path/to/output.jsonl \
     --task-id 57
 
 # 处理整个目录（推荐）
-python3 /home/guohongcheng/extract_measurement_values_improved.py \
+python3 scripts/extract_measurement_values_improved.py \
     --input /path/to/input_directory \
     --output /path/to/output_directory
 ```
@@ -113,14 +113,14 @@ mkdir -p /path/to/your_model_results/{task_id}/{model_name}/
 
 例如：
 ```bash
-mkdir -p /home/guohongcheng/DolphinV1.9_results/03/DolphinV1.9/
-mkdir -p /home/guohongcheng/DolphinV1.9_results/21/DolphinV1.9/
+mkdir -p /path/to/DolphinV1.9_results/03/DolphinV1.9/
+mkdir -p /path/to/DolphinV1.9_results/21/DolphinV1.9/
 # ... 为每个任务和模型创建目录
 ```
 
 ### 第三步：运行评估程序
 
-**评估程序路径**: `/home/guohongcheng/new_results/`
+**评估程序路径**: `new_results/`
 
 #### 3.1 分类任务评估
 
@@ -134,7 +134,7 @@ mkdir -p /home/guohongcheng/DolphinV1.9_results/21/DolphinV1.9/
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/new_results
+cd new_results
 python3 qwen_cla_eval.py /path/to/model_results /path/to/output_results.txt
 ```
 
@@ -155,7 +155,7 @@ python3 qwen_cla_eval.py /path/to/model_results /path/to/output_results.txt
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/new_results
+cd new_results
 python3 qwen_measure_eval.py /path/to/model_results /path/to/output_results.txt
 ```
 
@@ -176,7 +176,7 @@ python3 qwen_measure_eval.py /path/to/model_results /path/to/output_results.txt
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/new_results
+cd new_results
 python3 qwen_seg_eval.py /path/to/model_results /path/to/output_results.txt
 ```
 
@@ -193,7 +193,7 @@ python3 qwen_seg_eval.py /path/to/model_results /path/to/output_results.txt
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/new_results
+cd new_results
 python3 qwen_report_eval.py /path/to/model_results /path/to/output_results.txt
 ```
 
@@ -212,24 +212,24 @@ python3 qwen_report_eval.py /path/to/model_results /path/to/output_results.txt
 
 ### 第四步：生成评估结果表格
 
-**程序路径**: `/home/guohongcheng/table_fill/update_table_score_format.py`
+**程序路径**: `table_fill/update_table_score_format.py`
 
 **功能**: 读取各任务的评估结果文件，计算综合得分，生成LaTeX格式的结果表格。
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/table_fill
+cd table_fill
 python3 update_table_score_format.py
 ```
 
 **输入文件** (程序自动读取):
-- `/home/guohongcheng/DolphinV1.9p_results/cla_results.txt`
-- `/home/guohongcheng/DolphinV1.9p_results/seg_results.txt`
-- `/home/guohongcheng/DolphinV1.9p_results/mea_results.txt`
-- `/home/guohongcheng/DolphinV1.9p_results/report_results.txt`
+- `/path/to/DolphinV1.9p_results/cla_results.txt`
+- `/path/to/DolphinV1.9p_results/seg_results.txt`
+- `/path/to/DolphinV1.9p_results/mea_results.txt`
+- `/path/to/DolphinV1.9p_results/report_results.txt`
 
 **输出文件**:
-- `/home/guohongcheng/table_fill/new_table_content_score_format0522.tex`
+- `table_fill/new_table_content_score_format0522.tex`
 
 **功能特点**:
 - 自动计算各任务加权得分
@@ -257,7 +257,7 @@ weights = {
 
 ### 第五步：使用模型对比分析工具包（可选）
 
-**工具包路径**: `/home/guohongcheng/Model_Comparison_Toolkit/`
+**工具包路径**: `Model_Comparison_Toolkit/`
 
 这是一个功能强大的分析工具包，支持详细的模型对比、可视化和案例分析。
 
@@ -273,7 +273,7 @@ weights = {
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/Model_Comparison_Toolkit
+cd Model_Comparison_Toolkit
 
 # 基本对比分析
 python3 model_comparison_toolkit.py \
@@ -402,13 +402,13 @@ evaluation_results/
 
 ### 7.3 DolphinV1.9三案例对比报告生成
 
-**工具位置**: `/home/guohongcheng/Model_Comparison_Toolkit/Dolphin_Fixed_Analysis/`
+**工具位置**: `Model_Comparison_Toolkit/Dolphin_Fixed_Analysis/`
 
 这个工具专门为DolphinV1.9模型的标准模式与深度推理模式对比而设计。
 
 **使用方法**:
 ```bash
-cd /home/guohongcheng/Model_Comparison_Toolkit/Dolphin_Fixed_Analysis
+cd Model_Comparison_Toolkit/Dolphin_Fixed_Analysis
 bash generate_case_report.sh
 ```
 
@@ -440,36 +440,36 @@ bash generate_case_report.sh
 conda activate multimodal_test
 
 # 2. 数据预处理
-python3 /home/guohongcheng/extract_model_responses_final.py \
+python3 scripts/extract_model_responses_final.py \
     --input /path/to/raw_model_outputs \
     --output /path/to/processed_outputs
 
-python3 /home/guohongcheng/extract_measurement_values_improved.py \
+python3 scripts/extract_measurement_values_improved.py \
     --input /path/to/measurement_outputs \
     --output /path/to/processed_measurement_outputs
 
 # 3. 创建结果目录
-mkdir -p /home/guohongcheng/MyModel_results
+mkdir -p ./MyModel_results
 
 # 4. 运行评估
-cd /home/guohongcheng/new_results
-python3 qwen_cla_eval.py /path/to/processed_outputs /home/guohongcheng/MyModel_results/cla_results.txt
-python3 qwen_seg_eval.py /path/to/processed_outputs /home/guohongcheng/MyModel_results/seg_results.txt
-python3 qwen_measure_eval.py /path/to/processed_measurement_outputs /home/guohongcheng/MyModel_results/mea_results.txt
-python3 qwen_report_eval.py /path/to/processed_outputs /home/guohongcheng/MyModel_results/report_results.txt
+cd new_results
+python3 qwen_cla_eval.py /path/to/processed_outputs ./../MyModel_results/cla_results.txt
+python3 qwen_seg_eval.py /path/to/processed_outputs ./../MyModel_results/seg_results.txt
+python3 qwen_measure_eval.py /path/to/processed_measurement_outputs ./../MyModel_results/mea_results.txt
+python3 qwen_report_eval.py /path/to/processed_outputs ./../MyModel_results/report_results.txt
 
 # 5. 生成表格（需要修改程序中的路径配置）
-cd /home/guohongcheng/table_fill
+cd ../table_fill
 python3 update_table_score_format.py
 
 # 6. 对比分析（可选）
-cd /home/guohongcheng/Model_Comparison_Toolkit
+cd ../Model_Comparison_Toolkit
 python3 model_comparison_toolkit.py \
     --model1-name "BaselineModel" \
     --model1-data /path/to/baseline/results \
     --model2-name "MyModel" \
-    --model2-data /home/guohongcheng/MyModel_results \
-    --output-dir /home/guohongcheng/MyModel_Analysis
+    --model2-data ./../MyModel_results \
+    --output-dir ./../MyModel_Analysis
 ```
 
 ---
@@ -479,7 +479,7 @@ python3 model_comparison_toolkit.py \
 ### 1. 数据预处理程序
 
 #### extract_model_responses_final.py
-- **位置**: `/home/guohongcheng/extract_model_responses_final.py`
+- **位置**: `scripts/extract_model_responses_final.py`
 - **用途**: 处理分类和分割任务的模型回复
 - **特色功能**:
   - 自动选项提取和匹配
@@ -488,7 +488,7 @@ python3 model_comparison_toolkit.py \
   - 详细的处理统计和日志
 
 #### extract_measurement_values_improved.py  
-- **位置**: `/home/guohongcheng/extract_measurement_values_improved.py`
+- **位置**: `scripts/extract_measurement_values_improved.py`
 - **用途**: 提取测量任务中的数值
 - **特色功能**:
   - 智能数值识别和提取
@@ -499,29 +499,29 @@ python3 model_comparison_toolkit.py \
 ### 2. 评估程序系列
 
 #### qwen_cla_eval.py
-- **位置**: `/home/guohongcheng/new_results/qwen_cla_eval.py`
+- **位置**: `new_results/qwen_cla_eval.py`
 - **支持任务**: 分类任务 (03, 10, 18, 21, 23, 25, 28_1, 32, 37, 40, 42, 44, 50, 53, 57, 66, 69, 70, 74is_normal, 74is_visible, 75, anatomy)
 - **输出指标**: Accuracy, Precision, Recall, F1-Score
 
 #### qwen_measure_eval.py
-- **位置**: `/home/guohongcheng/new_results/qwen_measure_eval.py`  
+- **位置**: `new_results/qwen_measure_eval.py`  
 - **支持任务**: 测量任务 (18, 27, 31, 50, 57)
 - **输出指标**: RMSE, MAE, %_within_tolerance, Std
 
 #### qwen_seg_eval.py
-- **位置**: `/home/guohongcheng/new_results/qwen_seg_eval.py`
+- **位置**: `new_results/qwen_seg_eval.py`
 - **支持任务**: 分割任务 (04, 09, 13, 16, 17, 18, 23, 31, 32, 37, 38, 47, 48, 49, 50, 52, 53, 64, 67)
 - **输出指标**: Accuracy
 
 #### qwen_report_eval.py
-- **位置**: `/home/guohongcheng/new_results/qwen_report_eval.py`
+- **位置**: `new_results/qwen_report_eval.py`
 - **支持任务**: 报告生成 (10, 39, 44)
 - **输出指标**: BLEU-1/2/3/4, ROUGE, BERTScore
 
 ### 3. 结果处理程序
 
 #### update_table_score_format.py
-- **位置**: `/home/guohongcheng/table_fill/update_table_score_format.py`
+- **位置**: `table_fill/update_table_score_format.py`
 - **功能**: 
   - 读取四个评估结果文件
   - 按任务类型分组统计
@@ -532,7 +532,7 @@ python3 model_comparison_toolkit.py \
 ### 4. 分析工具包
 
 #### Model_Comparison_Toolkit
-- **位置**: `/home/guohongcheng/Model_Comparison_Toolkit/`
+- **位置**: `Model_Comparison_Toolkit/`
 - **核心程序**: `model_comparison_toolkit.py`
 - **专用工具**: `Dolphin_Fixed_Analysis/`子目录
 - **功能**:

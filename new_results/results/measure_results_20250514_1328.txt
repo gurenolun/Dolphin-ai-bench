@@ -1,5 +1,0 @@
-task_id	model	RMSE	MAE	Std	%_within_tolerance	failed_items
-18	MiniGPT-med	0.1489	0.1206	0.1440	48.0392	0
-27	MiniGPT-med	0.2766	0.2252	0.2712	25.0000	0
-50	MiniGPT-med	0.1733	0.1271	0.1721	48.5437	1
-57	MiniGPT-med	0.6237	0.5670	0.3713	11.3208	0

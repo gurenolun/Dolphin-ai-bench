@@ -12,9 +12,9 @@ import io
 
 # 预定义的TSV路径映射
 TSV_PATH = {
-    '03': '/media/ps/data-ssd/json_processing/ale_tsv_output/classification_tsv_output/3_FETAL_Planes_US.tsv',
-    '31': '/media/ps/data-ssd/json_processing/ale_tsv_output/31.tsv',
-    '48': '/media/ps/data-ssd/json_processing/ale_tsv_output/single_keypoint/48.tsv'
+    '03': 'data/tsv/classification/3_FETAL_Planes_US.tsv',
+    '31': 'data/tsv/31.tsv',
+    '48': 'data/tsv/single_keypoint/48.tsv'
 }
 
 # 任务描述映射
@@ -28,11 +28,11 @@ TASK_DESCRIPTIONS = {
 MODEL_CONFIGS = {
     'standard': {
         'name': 'DolphinV1.9p (标准模式)',
-        'base_dir': '/home/guohongcheng/DolphinV1.9p'
+        'base_dir': 'data/models/DolphinV1.9p'
     },
     'deep': {
         'name': 'DolphinV1.9 (深度推理模式)', 
-        'base_dir': '/home/guohongcheng/DolphinV1.9'
+        'base_dir': 'data/models/DolphinV1.9'
     }
 }
 

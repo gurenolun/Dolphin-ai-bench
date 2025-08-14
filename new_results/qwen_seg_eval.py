@@ -223,10 +223,8 @@ def new_seg_eval(data, jsonl_path=None):
         # 'f1': f1_score(gt_list, pred_list, average='macro')
     }
 
-def batch_evaluate_all_tasks():
+def batch_evaluate_all_tasks(base_dir='data/seg', output_file='results/seg_results.txt'):
     """批量处理所有任务的主函数"""
-    base_dir = '/home/guohongcheng/DolphinV1.9p/seg'
-    output_file = '/home/guohongcheng/DolphinV1.9p_results/seg_results.txt'
     
     all_results = []
     
@@ -262,6 +260,7 @@ def batch_evaluate_all_tasks():
                 print(f"Failed to process {jsonl_path}: {str(e)}")
     
     # 保存结果
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     save_results(all_results, output_file)
     print(f"Evaluation completed. Results saved to {output_file}")
 

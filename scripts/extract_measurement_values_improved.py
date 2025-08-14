@@ -12,7 +12,7 @@ import argparse
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='/home/guohongcheng/extract_measurement_values_improved.log'
+    filename='extract_measurement_values_improved.log'
 )
 
 def extract_number_from_response(response, task_id):

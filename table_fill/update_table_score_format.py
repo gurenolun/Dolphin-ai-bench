@@ -4,10 +4,10 @@ import numpy as np
 import re
 
 # 读取最新结果文件
-cla_results = pd.read_csv('/home/guohongcheng/DolphinV1.9p_results/cla_results.txt', sep='\t')
-seg_results = pd.read_csv('/home/guohongcheng/DolphinV1.9p_results/seg_results.txt', sep='\t')
-mea_results = pd.read_csv('/home/guohongcheng/DolphinV1.9p_results/mea_results.txt', sep='\t')
-report_results = pd.read_csv('/home/guohongcheng/DolphinV1.9p_results/report_results.txt', sep='\t')
+cla_results = pd.read_csv('DolphinV1.9p_results/cla_results.txt', sep='\t')
+seg_results = pd.read_csv('DolphinV1.9p_results/seg_results.txt', sep='\t')
+mea_results = pd.read_csv('DolphinV1.9p_results/mea_results.txt', sep='\t')
+report_results = pd.read_csv('DolphinV1.9p_results/report_results.txt', sep='\t')
 
 # 将所有任务ID转换为字符串
 cla_results['task_id'] = cla_results['task_id'].astype(str)
@@ -500,7 +500,7 @@ for model in closed_source_models:
 table_content += "\\bottomrule\n"
 
 # 保存表格内容到文件
-with open('/home/guohongcheng/table_fill/new_table_content_score_format0522.tex', 'w') as f:
+with open('new_table_content_score_format0522.tex', 'w') as f:
     f.write(table_content)
 
-print(f"表格已保存到: /home/guohongcheng/table_fill/new_table_content_score_format0522.tex")
+print(f"表格已保存到: new_table_content_score_format0522.tex")

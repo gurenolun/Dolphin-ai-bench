@@ -270,9 +270,7 @@ def model_eval(data, jsonl_path=None):
     # except Exception as e:
     #     return {'error': f"Evaluation failed: {str(e)}"}}
 
-def batch_evaluate_all_tasks():
-    base_dir = '/home/guohongcheng/DolphinV1.9p/report'
-    output_file = '/home/guohongcheng/DolphinV1.9p_results/report_results.txt'
+def batch_evaluate_all_tasks(base_dir='data/report', output_file='results/report_results.txt'):
     
     all_results = []
     
@@ -312,6 +310,7 @@ def batch_evaluate_all_tasks():
             #     print(f"Failed to process {jsonl_path}: {str(e)}")
     
     # 保存结果
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     save_results(all_results, output_file)
     print(f"Evaluation completed. Results saved to {output_file}")
 

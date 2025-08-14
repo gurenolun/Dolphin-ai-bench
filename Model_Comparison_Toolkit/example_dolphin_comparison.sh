@@ -14,10 +14,10 @@ if [ ! -f "model_comparison_toolkit.py" ]; then
 fi
 
 # Set paths (modify these according to your setup)
-DOLPHIN16_STANDARD="/home/guohongcheng/DolphinV1.6r_results"
-DOLPHIN16_DEEP="/home/guohongcheng/DolphinV1.6rd_results"
-DOLPHIN19_STANDARD="/home/guohongcheng/DolphinV1.9p_results"
-DOLPHIN19_DEEP="/home/guohongcheng/DolphinV1.9_results"
+DOLPHIN16_STANDARD="/path/to/DolphinV1.6r_results"
+DOLPHIN16_DEEP="/path/to/DolphinV1.6rd_results"
+DOLPHIN19_STANDARD="/path/to/DolphinV1.9p_results"
+DOLPHIN19_DEEP="/path/to/DolphinV1.9_results"
 
 echo "Data paths:"
 echo "  Dolphin 1.6 Standard: $DOLPHIN16_STANDARD"
