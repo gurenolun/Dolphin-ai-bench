@@ -1,0 +1,5 @@
+task_id	model	RMSE	MAE	Std	%_within_tolerance	failed_items
+18	DolphinUltrasoundV19	0.2410	0.1864	0.2261	32.3529	0
+27	DolphinUltrasoundV19	0.2165	0.1556	0.2155	57.1429	17
+50	DolphinUltrasoundV19	0.1987	0.1394	0.1833	46.6019	1
+57	DolphinUltrasoundV19	0.3871	0.2637	0.3831	40.5660	0

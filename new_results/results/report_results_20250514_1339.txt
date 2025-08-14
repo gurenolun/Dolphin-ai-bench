@@ -1,0 +1,4 @@
+task_id	model	Bleu-4	Rouge	BERTScore
+10	MiniGPT-med	30.20	47.75	80.50
+11	MiniGPT-med	1.73	10.30	68.35
+39	MiniGPT-med	6.47	20.13	74.69

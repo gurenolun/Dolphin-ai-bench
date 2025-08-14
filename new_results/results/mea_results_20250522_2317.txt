@@ -1,0 +1,5 @@
+task_id	model	RMSE	MAE	Std	%_within_tolerance	failed_items
+18	DolphonUltrasound72BV0.5	nan	nan	nan	nan	102
+27	DolphonUltrasound72BV0.5	nan	nan	nan	nan	24
+50	DolphonUltrasound72BV0.5	nan	nan	nan	nan	104
+57	DolphonUltrasound72BV0.5	nan	nan	nan	nan	106
